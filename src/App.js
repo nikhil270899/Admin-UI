@@ -21,7 +21,7 @@ const reducerFunction = (state, action) => {
       searchedDataArr: [...action.payload],
     };
   }
-  if (action.type === "FILTER_SEARCH") {
+  if (action.type === "DELETE_FILTER_SEARCH") {
     return { ...state, searchedDataArr: [...action.payload] };
   }
   if (action.type === "EMPTY_SEARCH") {
@@ -126,7 +126,7 @@ function App() {
       return item.id !== id;
     });
     if (searchReducer.textSearched) {
-      dispatchSearchedData({ type: "FILTER_SEARCH", payload: dataAfterDelete });
+      dispatchSearchedData({ type: "DELETE_FILTER_SEARCH", payload: dataAfterDelete });
       return;
     }
     setFetchedData(dataAfterDelete);
