@@ -1,0 +1,18 @@
+.search-input-text{
+    padding: 7px;
+    border: 1px solid gray;
+    border-radius: 4px;
+    width: 30rem;
+}
+.search-container{
+    padding: 10px;
+}
+
+  .update-details{
+      text-align: center;
+      font-size: large;
+      font-weight: 800;
+      color: gray;
+      font-family: sans-serif;
+  }
+  

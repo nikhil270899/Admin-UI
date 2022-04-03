@@ -1,0 +1,41 @@
+table {
+      font-family: arial, sans-serif;
+      border-collapse: collapse;
+      width: 100%;
+    }
+    
+    td, th {
+      border: 1px solid #dddddd;
+      text-align: center;
+      padding: 8px;
+      font-size: small;
+      font-weight: 200;
+    }
+    #edit-icon-wrapper{
+        font-weight: 300;
+        cursor: pointer;
+    }
+    #delete-icon-wrapper{
+        color: rgb(201, 74, 74);
+        cursor: pointer;
+
+    }
+    #button-wrapper{
+        margin: 2rem 8rem;
+    }
+    #delete-multiple-records{
+    border-radius: 10px;
+    background-color: #db4f57;
+    float: left;
+    margin-top: 4px;
+}
+
+.no-data{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.checked-data{
+background-color: rgb(190, 197, 197);
+}
+   
