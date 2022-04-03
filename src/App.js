@@ -15,6 +15,12 @@ const reducerFunction = (state, action) => {
       searchedDataArr: [...action.payload.searchedData],
     };
   }
+  if (action.type === "SET_UPDATED") {
+    return {
+      textSearched: state.textSearched,
+      searchedDataArr: [...action.payload],
+    };
+  }
   if (action.type === "FILTER_SEARCH") {
     return { ...state, searchedDataArr: [...action.payload] };
   }
@@ -76,10 +82,22 @@ function App() {
 
   //Getting updated data and setting to the admin data
   const sentUpdatedDataToParent = (data, id) => {
-    let finalUpdatedData = fetchedData?.map((item) => {
+    let arr =
+      searchReducer.searchedDataArr.length || searchReducer.textSearched
+        ? searchReducer.searchedDataArr
+        : fetchedData;
+    let finalUpdatedData = arr?.map((item) => {
       return item.id === id ? { ...data } : item;
     });
-    setFetchedData([...finalUpdatedData]);
+    if (searchReducer.textSearched) {
+      dispatchSearchedData({
+        type: "SET_UPDATED",
+        payload: finalUpdatedData,
+      });
+      return;
+    }
+
+    setFetchedData(finalUpdatedData);
   };
   //Delete Multiple rows
   const delteMultipleRecord = (data, singleCheckBoxClicked) => {
@@ -133,11 +151,11 @@ function App() {
     dispatchSearchedData({ type: "EMPTY_SEARCH", payload: fetchedData });
   };
   //TEXT FOR USER
-  let text = `${
+  let common =
     searchReducer.searchedDataArr.length || searchReducer.textSearched
       ? searchReducer.searchedDataArr.length
-      : fetchedData.length
-  } users available`;
+      : fetchedData.length;
+  let text = `${common} users available`;
   return (
     <div className="App">
       <div className="app-name">{appName}</div>
